@@ -95,7 +95,7 @@ Distributed under the MIT License. See [LICENSE](https://github.com/ItzBenoitXD/
 ## Authors
 
 * **ItzBenoitXD** - *developer???* - [ItzBenoitXD](https://github.com/ItzBenoitXD) - *Made the HolaClient Installer*
-* **Lolo280374** - *someone???* - [Lolo280374](https://github.com/Lolo280374) - *I guess another contributor? (he wanted to be on the list anyway*
+* **Lolo280374** - *someone???* - [Lolo280374](https://github.com/Lolo280374) - *I guess another contributor? (he wanted to be on the list anyway)*
 * **CR072** - *i dont know* - [CR072](https://github.com/CR072) - *Made HolaClient*
 
 ## Acknowledgements
