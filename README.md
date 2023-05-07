@@ -1,5 +1,3 @@
-# This project is currently paused due to Sryden's DMCA request. Please do not use this egg and wait for v2.
-
 <br/>
 <p align="center">
   <a href="https://github.com/ItzBenoitXD/holaclient-installer">
