@@ -92,21 +92,22 @@ EOL
 
 elif [[ $choice == "2" ]]; then
   echo "Updating HolaClient..."
-  cd /var/www/holaclient/HolaClient
+  cd /var/www/HolaClient
   git pull
   npm i
   echo "HolaClient update completed successfully."
 
 elif [[ $choice == "3" ]]; then
   echo "Installing dependencies..."
-  cd /var/www/holaclient/HolaClient
+  cd /var/www/HolaClient
   npm i
   echo "Dependencies installation completed successfully."
 
 elif [[ $choice == "4" ]]; then
   echo "Uninstalling HolaClient..."
-  cd /var/www/holaclient/HolaClient
+  cd /var/www/HolaClient
   npm uninstall
+  rm /etc/nginx/sites-enabled/holaclient.conf
   echo "HolaClient uninstallation completed successfully."
 
 else
