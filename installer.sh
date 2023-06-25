@@ -37,6 +37,8 @@ if [[ $choice == "1" ]]; then
   echo "Downloading environmental dependencies..."
   sudo apt -y update --silent && sudo apt -y upgrade --silent
   sudo apt -y install git --silent
+  sudo apt install nodejs npm
+  sudo apt update
   echo "Downloading HolaClient files..."
   git clone --quiet --single-branch --branch "$version" https://github.com/CR072/HolaClient
   echo "Updating environmental dependencies..."
@@ -48,10 +50,8 @@ if [[ $choice == "1" ]]; then
 
   echo ""
   cd HolaClient
-  echo "Downloading HolaClient dependencies..."
   npm i
   npm i -g pm2
-
   pm2 start index.js --name "holaclient" --silent
   sudo apt install -y python3-certbot-nginx nginx --silent
   ufw allow 80 --silent && ufw allow 443 --silent
