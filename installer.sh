@@ -54,6 +54,7 @@ if [[ $choice == "1" ]]; then
   echo ""
   cd HolaClient
   npm i
+  npm i node_modules
   npm i -g pm2
   pm2 start index.js --name "holaclient" 
   sudo apt install -y python3-certbot-nginx nginx 
