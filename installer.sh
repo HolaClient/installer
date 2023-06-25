@@ -18,6 +18,7 @@ echo -e "${GRAY}[+] ${WHITE}[${CYAN}Github ${WHITE}] ${WHITE}https://github.com/
 echo -e "${GRAY}[+] ${WHITE}[${CYAN}Docs   ${WHITE}] ${WHITE}https://docs.holaclient.tech/"
 echo -e "${WHITE}================================================="
 echo ""
+echo -e "${CYAN}"
 
 echo "Please choose an option:"
 echo "1. Install HolaClient"
@@ -28,33 +29,34 @@ echo "4. Uninstall HolaClient"
 read -p "Enter your choice (1-4): " choice
 
 if [[ $choice == "1" ]]; then
-  read -p "Enter the HolaClient version to clone (latest): " version
+  read -p "Enter the HolaClient version to clone (main): " version
 
   read -p "Enter your domain: " domain
   read -p "Enter the port: " port
 
   cd /var/www/
   echo "Downloading environmental dependencies..."
-  sudo apt -y update --silent && sudo apt -y upgrade --silent
-  sudo apt -y install git --silent
+  sudo apt -y update  && sudo apt -y upgrade 
+  sudo apt -y install git 
   sudo apt install nodejs npm
   sudo apt update
+  sudo apt-get install gnupg tee npm
   echo "Downloading HolaClient files..."
   git clone --quiet --single-branch --branch "$version" https://github.com/CR072/HolaClient
   echo "Updating environmental dependencies..."
-  curl -sL https://deb.nodesource.com/setup_18.x | sudo bash - --silent
-  sudo apt-get install -y nodejs gcc g++ make --silent
-  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - --silent
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list --silent
-  sudo apt-get update && sudo apt-get install yarn --silent
+  curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
+  sudo apt-get install -y nodejs gcc g++ make 
+  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt-get update && sudo apt-get install yarn 
 
   echo ""
   cd HolaClient
   npm i
   npm i -g pm2
-  pm2 start index.js --name "holaclient" --silent
-  sudo apt install -y python3-certbot-nginx nginx --silent
-  ufw allow 80 --silent && ufw allow 443 --silent
+  pm2 start index.js --name "holaclient" 
+  sudo apt install -y python3-certbot-nginx nginx 
+  ufw allow 80  && ufw allow 443 
   certbot certonly --nginx -d "$domain"
 
   sudo tee /etc/nginx/sites-enabled/holaclient.conf > /dev/null << EOL
