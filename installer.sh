@@ -49,6 +49,7 @@ if [[ $choice == "1" ]]; then
     pm2 start index.js --name "holaclient" --silent
     sudo apt install -y python3-certbot-nginx nginx --silent
     ufw allow 80 --silent && ufw allow 443 --silent
+    certbot certonly --nginx -d $domain
     rm /etc/nginx/sites-enabled/default
 
 
