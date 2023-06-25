@@ -13,6 +13,7 @@ echo -e "${GRAY}[+] ${WHITE}[${CYAN}Discord${WHITE}] ${WHITE}https://discord.gg/
 echo -e "${GRAY}[+] ${WHITE}[${CYAN}Github ${WHITE}] ${WHITE}https://github.com/CR072/HolaClient "
 echo -e "${GRAY}[+] ${WHITE}[${CYAN}Docs   ${WHITE}] ${WHITE}https://docs.holaclient.tech/"
 echo -e "${WHITE}================================================="
+echo ""
 
 echo "Please choose an option:"
 echo "1. Install HolaClient"
@@ -31,7 +32,7 @@ if [[ $choice == "1" ]]; then
   cd /var/www/holaclient
   sudo apt -y update && sudo apt -y upgrade
   sudo apt -y install git
-  git clone https://github.com/CR072/HolaClient
+  git clone --quiet --single-branch --branch $version https://github.com/CR072/HolaClient
   sudo apt -y update && sudo apt -y upgrade
 
   curl -sL https://deb.nodesource.com/setup_17.x | sudo bash -
