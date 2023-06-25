@@ -24,37 +24,52 @@ echo "4. Uninstall HolaClient"
 read -p "Enter your choice (1-4): " choice
 
 if [[ $choice == "1" ]]; then
-  echo "Installing HolaClient..."
-  read -p "Enter the HolaClient version to clone: " version
+  read -p "Enter the HolaClient version to clone (latest): " version
   read -p "Silent install? (true/false): " silent
 
   mkdir /var/www/holaclient
   cd /var/www/holaclient
-  sudo apt -y update && sudo apt -y upgrade
-  sudo apt -y install git
-  git clone --quiet --single-branch --branch $version https://github.com/CR072/HolaClient
-  sudo apt -y update && sudo apt -y upgrade
-
-  curl -sL https://deb.nodesource.com/setup_17.x | sudo bash -
-  sudo apt-get install -y nodejs gcc g++ make
-  node -v
-  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  sudo apt-get update && sudo apt-get install yarn
-
+  echo "Downloading environmental dependencies..."
+    if [[ $silent == "true" ]]; then
+      sudo apt -y update --silent && sudo apt -y upgrade --silent
+      sudo apt -y install git --silent
+      echo "Downloading HolaClient files..."
+      git clone --quiet --single-branch --branch $version https://github.com/CR072/HolaClient
+      echo "Updating environmental dependencies..."
+      curl -sL https://deb.nodesource.com/setup_18.x | sudo bash - --silent
+      sudo apt-get install -y nodejs gcc g++ make --silent
+      curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - --silent
+      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list --silent
+      sudo apt-get update && sudo apt-get install yarn --silent
+  else
+      sudo apt -y update && sudo apt -y upgrade
+      sudo apt -y install git
+      echo "Downloading HolaClient files..."
+      git clone --quiet --single-branch --branch $version https://github.com/CR072/HolaClient
+      echo "Updating environmental dependencies..."
+      curl -sL https://deb.nodesource.com/setup_18.x | sudo bash -
+      sudo apt-get install -y nodejs gcc g++ make
+      curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+      echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+      sudo apt-get update && sudo apt-get install yarn
+  fi
+ echo ""
   cd HolaClient
+  echo "Downloading HolaClient dependencies..."
   npm i
   npm i -g pm2
 
   if [[ $silent == "true" ]]; then
     pm2 start index.js --name "holaclient" --silent
+    sudo apt install -y python3-certbot-nginx nginx --silent
+    ufw allow 80 --silent && ufw allow 443 --silent
+    rm /etc/nginx/sites-enabled/default
   else
     pm2 start index.js --name "holaclient"
+    sudo apt install -y python3-certbot-nginx nginx
+    ufw allow 80 && ufw allow 443
+    rm /etc/nginx/sites-enabled/default
   fi
-
-  sudo apt install -y python3-certbot-nginx nginx
-  ufw allow 80 && ufw allow 443
-  rm /etc/nginx/sites-enabled/default
 
   read -p "Enter your domain: " domain
   read -p "Enter the port: " port
