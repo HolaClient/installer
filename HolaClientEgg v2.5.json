@@ -1,0 +1,78 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-06-26T18:35:02+05:30",
+    "name": "HolaClient-v2.5",
+    "author": "admin@tbnodes.com",
+    "description": "An egg for Pterodactyl panel usually used to install HolaClient, Made with \u2764 by amogus#6200 and being maintained by CR072#0446",
+    "features": null,
+    "docker_images": {
+        "Node.JS 19": "ghcr.io\/parkervcp\/yolks:nodejs_19",
+        "Node.JS 18": "ghcr.io\/parkervcp\/yolks:nodejs_18",
+        "Node.JS 17": "ghcr.io\/parkervcp\/yolks:nodejs_17",
+        "Node.JS 16": "ghcr.io\/parkervcp\/yolks:nodejs_16",
+        "Node.JS 15": "ghcr.io\/parkervcp\/yolks:nodejs_15",
+        "Node.JS 14": "ghcr.io\/parkervcp\/yolks:nodejs_14",
+        "Node.JS 12": "ghcr.io\/parkervcp\/yolks:nodejs_12"
+    },
+    "file_denylist": [],
+    "startup": "if [[ ! -z ${NODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm install ${NODE_PACKAGES}; fi; if [[ ! -z ${UNNODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm uninstall ${UNNODE_PACKAGES}; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{BOT_JS_FILE}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"=================================================\"\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# HolaClient Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n    echo -e \"Starting Installation Of HolaClient!\"\r\n    echo -e \"Installing packages...\"\r\n    apt update > \/dev\/null\r\n    apt install -y git curl jq file unzip make gcc g++ python python-dev libtool wget > \/dev\/null\r\n\r\n    echo -e \"Creating server files...\"\r\n    mkdir -p \/mnt\/server\r\n    cd \/mnt\/server\r\n\r\n    if [ \"$(ls -A \/mnt\/server)\" ]; then\r\n        echo -e \"\u26a0 Warning: The \/mnt\/server directory is not empty.\"\r\n        echo -e \"To prevent issues, this script has been automatically halted.\"\r\n        echo -e \"To update the current HolaClient version, please refer to our docs!\"\r\n        echo -e \"  _    _       _        _____ _ _            _   \"\r\n        echo -e \" | |  | |     | |      \/ ____| (_)          | |  \"\r\n        echo -e \" | |__| | ___ | | __ _| |    | |_  ___ _ __ | |_ \"\r\n        echo -e \" |  __  |\/ _ \\| |\/ _\\` | |    | | |\/ _ \\ '_ \\| __|\"\r\n        echo -e \" | |  | | (_) | | (_| | |____| | |  __\/ | | | |_ \"\r\n        echo -e \" |_|  |_|\\___\/|_|\\__,_|\\_____|_|_|\\___|_| |_|\\__|\"\r\n        echo -e \"\"\r\n        echo -e \"=====================SOCIAL======================\"\r\n        echo -e \"[+] [Discord]  https:\/\/discord.gg\/CvqRH9TrYK \" \r\n        echo -e \"[+] [GitHub]  https:\/\/github.com\/CR072\/HolaClient \"\r\n        echo -e \"[+] [HolaSMP]  https:\/\/discord.gg\/Dms5dsmVAs \"\r\n        echo -e \"=================================================\"\r\n        exit 10\r\n    else\r\n        echo -e \"\u2714 \/mnt\/server is empty.\\nDownloading the files...\"\r\n        git clone --single-branch --branch ${VERSION} https:\/\/github.com\/CR072\/HolaClient .\r\n        echo -e \"\u2714 Successfully downloaded HolaClient!\"\r\n    fi\r\n\r\n    echo \"Installing additional Node.JS packages...\"\r\n    if [[ ! -z ${NODE_PACKAGES} ]]; then\r\n        \/usr\/local\/bin\/npm install ${NODE_PACKAGES} --silent\r\n    fi\r\n\r\n    echo \"Installing required Node.JS packages...\"\r\n    if [ -f \/mnt\/server\/package.json ]; then\r\n        \/usr\/local\/bin\/npm install --production --silent\r\n    fi\r\n    echo -e \"\u2714 Successfully installed required and additional Node.JS packages!\"\r\n\r\necho -e \"\u2714 Successfully installed HolaClient!\"\r\necho -e \"\"\r\necho -e \"=====================SOCIAL======================\"\r\necho -e \"[+] [Discord]  https:\/\/discord.gg\/CvqRH9TrYK \" \r\necho -e \"[+] [GitHub]  https:\/\/github.com\/CR072\/HolaClient \"\r\necho -e \"[+] [HolaSMP]  https:\/\/discord.gg\/Dms5dsmVAs \"\r\necho -e \"=================================================\"\r\nexit 0",
+            "container": "node:17-buster-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "HolaClient Version",
+            "description": "The version of HolaClient to install. Default value: \"latest\".",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "HolaClient Startup File",
+            "description": "The index file to start the app. Default value: index.js",
+            "env_variable": "BOT_JS_FILE",
+            "default_value": "index.js",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Install Node.JS Packages",
+            "description": "Additional packages to install. Leave gap after a package.",
+            "env_variable": "NODE_PACKAGES",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Uninstall Node.JS Packages",
+            "description": "Node.JS packages to uninstall. Don't uninstall any of the HolaClient's dependencies packages.",
+            "env_variable": "UNNODE_PACKAGES",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
+    ]
+}
