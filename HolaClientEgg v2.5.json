@@ -7,7 +7,7 @@
     "exported_at": "2023-06-26T18:35:02+05:30",
     "name": "HolaClient-v2.5",
     "author": "admin@holaclient.tech",
-    "description": "An egg for Pterodactyl panel usually used to install HolaClient, Made with \u2764 by amogus#6200 and being maintained by CR072#0446",
+    "description": "An egg for Pterodactyl panel usually used to install HolaClient, Created and Maintained with \u2764 by amogus#6200.",
     "features": null,
     "docker_images": {
         "Node.JS 19": "ghcr.io\/parkervcp\/yolks:nodejs_19",
