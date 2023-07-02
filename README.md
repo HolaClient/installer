@@ -1,3 +1,6 @@
+# THIS PROJECT IS NO LONGER MAINTAINED.
+After careful consideration on my side, I have decided to fully stop doing updates to the egg/docs and will NOT bring any support. Got some people to verify that most of the security vulnerability were medium ones but some of them are very critical. Either way, I don't recommend using this project. Please, proceed at your OWN RISK.
+
 <br/>
 <p align="center">
   <a href="https://github.com/ItzBenoitXD/holaclient-installer">
