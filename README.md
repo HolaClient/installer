@@ -4,12 +4,13 @@
 <h1 align="center" tabindex="-1" dir="auto">HolaClient Egg</h1>
 <p align="center" dir="auto">A Pterodactyl egg to install HolaClient automatically.</p>
 <p align="center">
-  <img src="https://img.shields.io/github/downloads/ItzBenoitXD/holaclient-installer/total" alt="Downloads"> 
-  <img src="https://img.shields.io/github/contributors/ItzBenoitXD/holaclient-installer" alt="Contributors"> 
-  <img src="https://img.shields.io/github/forks/ItzBenoitXD/holaclient-installer" alt="Forks"> 
-  <img src="https://img.shields.io/github/stars/ItzBenoitXD/holaclient-installer" alt="Stargazers"> 
-  <img src="https://img.shields.io/github/issues/ItzBenoitXD/holaclient-installer" alt="Issues"> 
-  <img src="https://img.shields.io/github/license/ItzBenoitXD/holaclient-installer" alt="License">
+  <img src="https://img.shields.io/github/downloads/ItzBenoitXD/holaclient-installer/total?color=blue&label=Downloads" alt="Downloads">
+  <a href="https://discord.gg/CvqRH9TrYK"><img src="https://img.shields.io/discord/1038719273658499072?color=blue&label=Discord&logo=HolaClient&logoColor=blue" alt="discord" /></a>
+  <img src="https://img.shields.io/github/contributors/ItzBenoitXD/holaclient-installer?color=blue&label=Contributors" alt="Contributors"> 
+  <img src="https://img.shields.io/github/forks/ItzBenoitXD/holaclient-installer?color=blue&label=Forks" alt="Forks"> 
+  <img src="https://img.shields.io/github/stars/ItzBenoitXD/holaclient-installer?color=blue&label=Stargazers" alt="Stargazers"> 
+  <img src="https://img.shields.io/github/issues/ItzBenoitXD/holaclient-installer?color=blue&label=Issues" alt="Issues"> 
+  <img src="https://img.shields.io/github/license/ItzBenoitXD/holaclient-installer?color=blue&label=License" alt="License">
 </p>
 
 ---
