@@ -1,14 +1,24 @@
 #!/bin/bash
 
+# use some sketchy colors for error
+RED="\033[0;31m"
+BOLD="\033[1m"
+RESET="\033[0m"
+
+# Detect if user is not running in root
 if [[ $EUID -ne 0 ]]; then
-    echo "Installer must be initiated with sudo privileges!"
+    echo -e "${RED}error${RESET}: user is not running in root, please try again with sudo privileges"
     exit 1
 fi
 
+# finally some good color
+GREEN="\033[0;32m" 
 WHITE='\033[1;37m'
 CYAN='\033[0;36m'
 GRAY='\033[0;37m'
 NC='\033[0m'
+BG_YELLOW="\033[43m"
+YELLOW="\033[0;33m"
 clear
 echo -e "${WHITE}"
 echo "  _    _       _        _____ _ _            _   "
@@ -19,38 +29,50 @@ echo " | |  | | (_) | | (_| | |____| | |  __/ | | | |_ "
 echo " |_|  |_|\___/|_|\__,_|\_____|_|_|\___|_| |_|\__|"
 echo -e "${NC}"
 echo -e "#################################################"
-echo -e "# HolaClient Installation script @ v1.0"
+echo -e "# HolaClient Installation script @ v1.1"
 echo -e "# "
 echo -e "# https://holaclient.tech"
 echo -e "# https://github.com/HolaClient"
 echo -e "# https://discord.gg/CvqRH9TrYK"
 echo -e "# "
-echo -e "# Running $(lsb_release -is) version $(lsb_release -rs)"
+echo -e "# Originally made by ${GREEN}${BOLD}ItzBenoitXD${NC}"
+echo -e "# Your OS is $(lsb_release -is) version $(lsb_release -rs)"
 echo -e "#################################################"
 echo -e "${NC}"
 echo "What would you like to do?"
-echo "• [0] Install HolaClient and configure Nginx with SSL"
+echo "• [0] Install HolaClient and configure nginx with a SSL certificate"
 echo "• [1] Install HolaClient"
 echo "• [2] Update HolaClient"
 echo "• [3] Install Dependencies"
-echo "• [4] Configure Nginx with SSL"
+echo "• [4] Configure nginx with a SSL certificate"
 echo "• [5] Uninstall HolaClient"
 
 read -p "Enter your choice (0-5): " choice
 echo -e "${NC}"
 if [[ $choice == "0" ]]; then
     if [[ -d "/var/www/HolaClient" ]]; then
-        echo "HolaClient is already installed! Please select option 5 to reinstall it."
+        echo "${RED}error${RESET}: HolaClient is already installed! Please select option 5 to reinstall it."
         exit 1
     fi
     
-    read -p "Enter the HolaClient version to install (latest): " version
+    read -p "Enter the HolaClient version you want to install (latest): " version
     version=${version:-latest}
-    read -p "Enter your domain (client.example.com): " domain
+    read -p "Enter your client area domain (client.example.com): " domain
     read -p "Enter the port (2000): " port
     port=${port:-2000}
+    echo ""
+    echo -e "  ${YELLOW}${BG_YELLOW}${BOLD} WARN ${RESET} You may have a firewall that is blocking the port ${port}. Please add this port to your server"\'"s firewall if you have one. Continuing script."
+    echo ""
     read -p "Enter your email (admin@example.com): " email
     email=${email:-support@holaclient.tech}
+    echo ""
+    echo -e "  ${YELLOW}${BG_YELLOW}${BOLD} WARN ${RESET} Below this message, you will see what settings you putted. To modify one/more settings or want to cancel the install, press Control+C now. Otherwise, the script will install HolaClient in 20 seconds."
+    echo ""
+    echo -e "HolaClient version: ${version}"
+    echo -e "HolaClient port: ${port}"
+    echo -e "Your email: ${email}"
+    echo -e "HolaClient Domain: $domain"
+    sleep 20
     
     cd /var/www/
     echo ""
