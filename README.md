@@ -9,7 +9,7 @@ Please wait for v2, below are some statistics of v1.
 <br>
 Total Downloads: 1.4k<br>
 Total releases: 8<br>
-This installer egg has been originally made by [ItzBenoitXD](https://github.com/ItzBenoitXD).
+This installer egg has been originally made by <a href="https://github.com/ItzBenoitXD">ItzBenoitXD</a> .
 
 ---
 
